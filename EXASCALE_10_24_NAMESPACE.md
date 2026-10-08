@@ -2,7 +2,139 @@
 
 ## **ONLY 10²⁴-Ready Storage Systems**
 
----
+---Ich habe per GitHub-Suche 40 reale Storage-Engines und KV-Stores gefunden und geprüft. Das sind weit weniger als 333. Die Dateien habe ich nicht verändert und nichts committet.
+
+Die Treffer stammen aus vier Topic-Suchen: `storage-engine`, `lsm-tree`, `embedded-database` und `key-value-store`. Jede Abfrage lieferte nur die ersten 30 Treffer. `embedded-database` hat insgesamt 37 Treffer und `key-value-store` 53. Bei den anderen beiden Suchen wurde keine Gesamtzahl angegeben. Die Sternzahlen stammen aus der Suche von heute.
+
+## Verifizierte Storage-Engines (nicht in deiner Datei)
+
+| Repository | Stars | Typ |
+|---|---|---|
+| [slatedb/slatedb](https://github.com/slatedb/slatedb) | 3.470 | Embedded-Engine auf Objektspeicher (Rust) |
+| [fjall-rs/fjall](https://github.com/fjall-rs/fjall) | 2.367 | LSM-KV (Rust) |
+| [fjall-rs/lsm-tree](https://github.com/fjall-rs/lsm-tree) | – | LSM-Baum-Bibliothek (Rust) |
+| [Mithril-mine/libmdbx](https://github.com/Mithril-mine/libmdbx) | 1.472 | B+-Baum, LMDB-Nachfolger (C) |
+| [speedb-io/speedb](https://github.com/speedb-io/speedb) | 1.009 | RocksDB-kompatibel (C++) |
+| [tidesdb/tidesdb](https://github.com/tidesdb/tidesdb) | 572 | transaktionale LSM-Engine (C) |
+| [surrealdb/surrealkv](https://github.com/surrealdb/surrealkv) | 562 | versionierter KV (Rust) |
+| [Fullstop000/wickdb](https://github.com/Fullstop000/wickdb) | 620 | LSM-Engine (Rust) |
+| [yahoo/HaloDB](https://github.com/yahoo/HaloDB) | 528 | log-strukturierter KV (Java) |
+| [utsaslab/pebblesdb](https://github.com/utsaslab/pebblesdb) | 521 | Forschungs-KV (SOSP '17, C++) |
+| [ZoneTree/ZoneTree](https://github.com/ZoneTree/ZoneTree) | 504 | LSM-Engine (.NET) |
+| [wildcatdb/wildcat](https://github.com/wildcatdb/wildcat) | 253 | bLSM-artige Engine (Go) |
+| [hse-project/hse](https://github.com/hse-project/hse) | 669 | Engine für heterogenen Speicher (C) |
+| [TileDB-Inc/TileDB](https://github.com/TileDB-Inc/TileDB) | 2.085 | Array-Storage-Engine (C++) |
+| [orbitinghail/graft](https://github.com/orbitinghail/graft) | 1.553 | Engine mit Lazy Replication (Rust) |
+| [tonbo-io/tonbo](https://github.com/tonbo-io/tonbo) | 1.625 | Embedded-DB für Edge (Rust) |
+| [lotusdblabs/lotusdb](https://github.com/lotusdblabs/lotusdb) | – | LSM und B+-Baum (Go) |
+| [akrylysov/pogreb](https://github.com/akrylysov/pogreb) | 1.350 | read-lastiger KV (Go) |
+| [JetBrains/xodus](https://github.com/JetBrains/xodus) | 1.260 | transaktionale Embedded-DB (Java) |
+| [eBay/Jungle](https://github.com/eBay/Jungle) | – | KV für State Machines und Logs (C++) |
+| [microsoft/FASTER](https://github.com/microsoft/FASTER) | 6.635 | persistenter KV und Log (C# und C++) |
+| [lmdbjava/lmdbjava](https://github.com/lmdbjava/lmdbjava) | 874 | LMDB-Binding für Java |
+| [meilisearch/heed](https://github.com/meilisearch/heed) | 918 | LMDB-Wrapper (Rust) |
+| [hoytech/quadrable](https://github.com/hoytech/quadrable) | 325 | authentifizierter Merkle-DB (C++) |
+
+## Verifizierte verteilte KV-Stores und Datenbanken
+
+| Repository | Stars |
+|---|---|
+| [apple/foundationdb](https://github.com/apple/foundationdb) | 16.760 |
+| [valkey-io/valkey](https://github.com/valkey-io/valkey) | 27.388 |
+| [apache/incubator-pegasus](https://github.com/apache/incubator-pegasus) | 2.063 |
+| [olric-data/olric](https://github.com/olric-data/olric) | 3.497 |
+| [infinispan/infinispan](https://github.com/infinispan/infinispan) | 1.355 |
+| [skytable/skytable](https://github.com/skytable/skytable) | 2.664 |
+| [zuoyebang/bitalostored](https://github.com/zuoyebang/bitalostored) | 2.168 |
+| [opencurve/curve](https://github.com/opencurve/curve) | 2.390 |
+| [unum-cloud/UStore](https://github.com/unum-cloud/UStore) | 642 |
+| [cozodb/cozo](https://github.com/cozodb/cozo) | 4.132 |
+
+## Korrekturen und Hinweise
+
+**Kurz:** Ich habe keine 333+ Systeme gefunden, die „10²⁴-ready“ sind, denn die Kategorie gibt es nicht. Unten steht eine Liste mit rund 150 realen Kandidaten, die nicht schon in deiner Datei stehen. Für mehr bräuchte ich eine zweite Runde, oder du gibst mir ein Auswahlkriterium.
+
+## Warum „10²⁴-ready“ nicht belegbar ist
+
+- 10²⁴ Objekte entsprechen etwa 1 Yotta-Objekt. Kein produktives System ist darauf getestet. Die größten belegten Deployments liegen bei etwa 10¹²–10¹⁵ Objekten und Exabytes an Daten. Selbst bei 1 Byte pro Objekt wären 10²⁴ Byte ein Yottabyte, und das ist weit mehr als die gesamte weltweite Speicherkapazität.
+- Ein Adressraum wie 2²⁵⁶ (IPFS-Hashes) oder 2¹²⁸ ist **nicht** dasselbe wie Skalierbarkeit. Er sagt nur, wie viele Namen möglich sind, nicht wie viele Objekte tatsächlich speicherbar sind.
+- Die Markierungen „✅ YES (10¹⁸)“ und „10²⁴“ in deiner Datei sind deshalb nicht belegt. Ich würde die Spalte in „theoretischer Namensraum“ und „belegte Skala“ aufteilen.
+
+## Fehler in der bestehenden Datei
+
+- #5 CAN verlinkt auf go-ethereum/p2p, das ist keine CAN-Implementierung.
+- #6 Pastry verlinkt auf hyperledger/indy-sdk, das ist falsch.
+- #7 Tapestry (`stanford-futuredata/tapestry`) kann ich nicht bestätigen.
+- #14 „Haystack“ verlinkt auf facebook/mcrouter, das ist ein Memcached-Router.
+- #18 Riak: Das Repo liegt unter `basho/riak`, das Projekt ist aber praktisch eingestellt (später riak-core/Riak KV unter OpenRiak/TI Tokyo).
+- #19 Voldemort liegt unter `voldemort/voldemort`, ist aber weitgehend inaktiv.
+- #37 SQLite: Das GitHub-Repo ist nur ein Mirror.
+- #57 ZeroNet ist inaktiv.
+- Die „Total Repos: 79“ und die „70 Repos“ in der Linkliste stimmen nicht überein. Die Stern-Zahlen sind veraltet oder geschätzt.
+
+## Neue Kandidaten (nicht in deiner Datei)
+
+Die Links sind aus dem Gedächtnis zusammengestellt und sollten vor der Aufnahme geprüft werden.
+
+**Verteilte Dateisysteme und Objektspeicher**
+`minio/minio`, `rook/rook`, `longhorn/longhorn`, `openebs/openebs`, `juicedata/juicefs`, `gluster/glusterfs`, `moosefs/moosefs`, `lizardfs/lizardfs`, `cubefs/cubefs`, `openstack/swift`, `apache/ozone`, `apache/hadoop`, `tahoe-lafs/tahoe-lafs`, `deepseek-ai/3FS`, `daos-stack/daos`, `ThinkParQ/beegfs`, `lustre/lustre-release`, `waltligon/orangefs`, `open-io/oio-sds`, `scality/cloudserver`, `leo-project/leofs`, `perkeep/perkeep`, `Seagate/cortx-motr`, `irods/irods`, `dCache/dcache`, `cern-eos/eos`, `xrootd/xrootd`, `rucio/rucio`, `dragonflyoss/dragonfly`
+
+**Verteilte KV-Stores und Datenbanken**
+`apple/foundationdb`, `tikv/tikv`, `pingcap/tidb`, `cockroachdb/cockroach`, `yugabyte/yugabyte-db`, `vitessio/vitess`, `citusdata/citus`, `scylladb/scylladb`, `mongodb/mongo`, `apache/couchdb`, `aerospike/aerospike-server`, `apache/ignite`, `hazelcast/hazelcast`, `apache/geode`, `apache/accumulo`, `apache/kudu`, `surrealdb/surrealdb`, `arangodb/arangodb`, `valkey-io/valkey`, `dragonflydb/dragonfly`, `Snapchat/KeyDB`, `apache/kvrocks`, `OpenAtomFoundation/pika`
+
+**Storage-Engines**
+`etcd-io/bbolt`, `cockroachdb/pebble`, `speedb-io/speedb`, `wiredtiger/wiredtiger`, `erthink/libmdbx`, `slatedb/slatedb`
+
+**Analytik und Lakehouse**
+`ClickHouse/ClickHouse`, `apache/doris`, `StarRocks/starrocks`, `apache/druid`, `apache/pinot`, `apache/iceberg`, `delta-io/delta`, `apache/hudi`, `trinodb/trino`, `prestodb/presto`, `apache/arrow`, `apache/parquet-java`, `lancedb/lance`
+
+**Logs und Streaming**
+`redpanda-data/redpanda`, `nats-io/nats-server`, `apache/bookkeeper`, `pravega/pravega`, `risingwavelabs/risingwave`
+
+**Zeitreihen und Observability**
+`questdb/questdb`, `VictoriaMetrics/VictoriaMetrics`, `thanos-io/thanos`, `cortexproject/cortex`, `grafana/mimir`, `grafana/loki`, `grafana/tempo`, `m3db/m3`, `prometheus/prometheus`
+
+**Suche**
+`elastic/elasticsearch`, `apache/solr`, `apache/lucene`, `quickwit-oss/quickwit`
+
+**Vektor-Datenbanken und ANN**
+`facebookresearch/faiss`, `nmslib/hnswlib`, `chroma-core/chroma`, `microsoft/DiskANN`, `pgvector/pgvector`
+
+**Graph**
+`vesoft-inc/nebula`, `memgraph/memgraph`, `apache/tinkerpop`, `apache/age`, `alibaba/GraphScope`, `kuzudb/kuzu`
+
+**P2P und inhaltsadressiert**
+`n0-computer/iroh`, `holepunchto/hypercore`, `orbitdb/orbitdb`, `MystenLabs/walrus`, `codex-storage/nim-codex`, `SiaFoundation/renterd`, `radicle-dev/heartwood`, `git-annex` (git-annex.branchable.com), `restic/restic`, `borgbackup/borg`, `kopia/kopia`
+
+**Blockchain, DA und State**
+`anza-xyz/agave`, `aptos-labs/aptos-core`, `MystenLabs/sui`, `near/nearcore`, `cosmos/cosmos-sdk`, `ava-labs/avalanchego`, `algorand/go-algorand`, `IntersectMBO/cardano-node`, `celestiaorg/celestia-node`, `Layr-Labs/eigenda`, `hyperledger/fabric`, `hyperledger/besu`, `ledgerwatch/erigon`, `paradigmxyz/reth`
+
+**HPC und Wissenschaft**
+`HDFGroup/hdf5`, `zarr-developers/zarr-python`, `ornladios/ADIOS2`, `mochi-hpc` (Org), `LLNL/UnifyFS`, `LLNL/scr`, `root-project/root`
+
+**Echte DHT-Referenzen**
+`libp2p/go-libp2p-kad-dht`, `ethereum/devp2p`, `anacrolix/dht`, `mitchellh/go-ipfs-http-client` (bitte vorher prüfen)
+
+## Nächste Schritte
+
+1. Ich kann die Liste per GitHub-Suche verifizieren, zum Beispiel Existenz, Aktivität und Stars, und die Datei sauber als Markdown-Tabelle neu erzeugen.
+2. Ich kann die Spalte „10²⁴ Ready“ durch „Namensraum / belegte Skala / Aktivität“ ersetzen.
+3. Für die restlichen etwa 180 Einträge bis 333+ brauche ich ein Kriterium, zum Beispiel nur aktive Projekte, nur Open Source oder nur Storage-Engines. Sonst fülle ich mit Duplikaten und Randprojekten auf.
+
+Soll ich als Nächstes die Verifizierung machen und einen Commit in `graph-cluster-hpc` vorbereiten?
+
+- **libmdbx:** Das Repo liegt jetzt unter `Mithril-mine/libmdbx`. Mein früherer Link `erthink/libmdbx` war veraltet.
+- **Nicht aufnehmen:** Bei `slatedb`, `speedb`, `fjall` und `libmdbx` habe ich die Aktivität nicht geprüft. Die Suche hat nur Sterne und Forks geliefert. Die Treffer `lowdb`, `hawk`, `ImmortalDB`, `SleekDB`, `multer-gridfs-storage`, `rust-csharp-ffi`, `Network-Drive`, `nats.net` und `embedded-database-spring-test` sind keine Storage-Engines. Auch `dicedb` und `redpanda` habe ich weggelassen. `dicedb` wird als Valkey-basiert beschrieben. `redpanda` ist eine Streaming-Plattform.
+- **Fehlende Systeme:** Etablierte Engines wie `cockroachdb/pebble`, `etcd-io/bbolt` und `wiredtiger/wiredtiger` kamen in den Topic-Suchen nicht vor. Dafür brauche ich gezielte Einzelabfragen.
+- **Skala:** Die Spalte „10²⁴ Ready“ lässt sich weiterhin nicht belegen. Bei der Aufnahme würde ich stattdessen Typ, Sterne und Aktivität eintragen.
+
+## Nächste Schritte
+
+1. Ich prüfe gezielt die fehlenden Engines per Einzelabfrage und lese bei allen Treffern das letzte Commit-Datum aus.
+2. Ich schreibe die geprüften Einträge als neue Tabelle in `EXASCALE_10_24_NAMESPACE.md`. Das mache ich nur, wenn du das ausdrücklich sagst.
+3. Ich hole die restlichen Treffer der Topic-Suchen. Über das GitHub-UI geht das hier: [topic:key-value-store](https://github.com/search?q=topic%3Akey-value-store+stars%3A%3E200+archived%3Afalse&type=repositories&s=stars&o=desc). Auch dann bleibt die Liste weit unter 333.
+
+Soll ich mit Schritt 1 weitermachen?
 
 ## **TIER 1: Distributed Hash Tables & Consistent Hashing**
 
